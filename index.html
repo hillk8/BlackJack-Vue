@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="bootstrap-4.5.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="vue.js"></script>
+    <title>BlackJack</title>
+</head>
+<body>
+    <!-- Layout -->
+
+    <header>
+        <button class="game-header-btn">BLACKJACK</button>
+    </header>
+
+    <div class="container" id="app">
+        <div class="wrapper">
+            <!-- Dealer Section -->
+            <div class="dealer">
+                <h1>Dealer: {{ dealerPoints }}</h1>
+                <img src="/Poker png/10H.png" alt="">
+                <img src="/Poker png/2H.png" alt="">
+            </div>
+            
+            <!-- Player section -->
+            <div class="player">
+                <h1>Player: {{ playerPoints }}</h1>
+                <img src="/Poker png/10D.png" alt="">
+                <img src="/Poker png/9S.png" alt="">
+            </div>
+        </div>
+
+        <div id="msg-board">
+            <h1>Hit, Stand, or Quit....</h1>
+        </div>
+
+        <div class="game-btn-container">
+            <div v-if="!isGameRunning">
+                <button @click="startNewGame" class="game-btn btn btn-success">START NEW GAME</button>
+            </div>
+            <div v-else>
+                <button @click="hit" class="game-btn btn btn-primary">HIT</button>
+                <button @click="stand" class="game-btn btn btn-danger">STAND</button>
+                <button @click="clearBoardNStartNewGame" class="game-btn btn btn-success">NEW GAME</button>
+                <button @click="quit" class="game-btn btn btn-secondary">QUIT</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="jquery-3.5.1.js"></script>
+    <script src="bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
