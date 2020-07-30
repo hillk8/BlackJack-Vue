@@ -2,9 +2,11 @@
 const app = new Vue({
     el: '#app',
     data: {
-        isGameRunnning: false,
+        isGameRunning: false,
+        isGameEnded: false,
         playerPoints: 0,
         dealerPoints: 0,
+        msgBoard: 'Hit, Stand, or Quit....',
         playerHand: [],
         dealerHand: [],
         deck: [],
@@ -16,7 +18,7 @@ const app = new Vue({
     },
     methods:{
         startNewGame(){
-            this.isGameRunnning = true;
+            this.isGameRunning = true;
             for(let i = 0; i < 2; i++){
                 this.playerHand.push(this.dealCard());
                 this.dealerHand.push(this.dealCard());
@@ -24,12 +26,49 @@ const app = new Vue({
             this.playerPoints = this.checkHandValue(this.playerHand);
             this.dealerPoints = this.checkHandValue(this.dealerHand);
         },
+        hit(){
+            this.playerHand.push(this.dealCard());
+            this.playerPoints = this.checkHandValue(this.playerHand);
+
+            if(this.playerPoints > 21){
+                this.playerPoints = 'Busted!';
+                this.isGameEnded = true;
+                this.msgBoard = 'BUST! You lose!';
+                return;
+            }
+        },
+        stand(){
+            while(this.dealerPoints <= 16){
+                this.dealerHand.push(this.dealCard());
+                this.dealerPoints = this.checkHandValue(this.dealerHand); 
+                if(this.dealerPoints > 21){
+                    this.dealerPoints = 'BUSTED!';
+                    this.isGameEnded = true;
+                    this.msgBoard = 'Dealer Busted! You Win!';
+                    return;
+                }
+            }
+            if(this.dealerPoints > this.playerPoints){
+                this.msgBoard = 'You Lost!';
+            }else if(this.dealerPoints === this.playerPoints){
+                this.msgBoard = 'Draw!';
+            }else{
+                this.msgBoard = 'You Win!';
+            }
+            this.isGameEnded = true;
+        },
         quit(){
-            this.isGameRunnning = false;
+            this.isGameRunning = false;
+            this.isGameEnded = false;
+            this.msgBoard = 'Hit, Stand, or Quit....';
             this.playerPoints = 0;
             this.dealerPoints = 0;
             this.playerHand = [];
             this.dealerHand = [];
+        },
+        clearBoardNStartNewGame(){
+            this.quit();
+            this.startNewGame();
         },
         generateCardPool(){
             //d = Diamonds, s = Spades, c = Clubs, h = Hearts
@@ -43,7 +82,7 @@ const app = new Vue({
             });
             return pool;
         },
-        checkHandValue(){
+        checkHandValue(hand){
             let value = 0;
             hand.map(e => {
                 let v = e.slice(0, -1);
@@ -68,6 +107,9 @@ const app = new Vue({
             const card = this.deck[index];
             this.cardSwitch[index] = true;
             return card;
+        },
+        getSource(card){
+            return `./PNG/${card}.png`;
         }
     }
 });
