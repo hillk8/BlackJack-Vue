@@ -6,7 +6,7 @@ const app = new Vue({
         isGameEnded: false,
         playerPoints: 0,
         dealerPoints: 0,
-        msgBoard: 'Hit, Stand, or Quit....',
+        msgBoard: '',
         playerHand: [],
         dealerHand: [],
         deck: [],
@@ -25,6 +25,7 @@ const app = new Vue({
             }
             this.playerPoints = this.checkHandValue(this.playerHand);
             this.dealerPoints = this.checkHandValue(this.dealerHand);
+            this.msgBoard = 'Hit, Stand, or Quit....';
         },
         hit(){
             this.playerHand.push(this.dealCard());
@@ -60,7 +61,7 @@ const app = new Vue({
         quit(){
             this.isGameRunning = false;
             this.isGameEnded = false;
-            this.msgBoard = 'Hit, Stand, or Quit....';
+            this.msgBoard = '';
             this.playerPoints = 0;
             this.dealerPoints = 0;
             this.playerHand = [];
@@ -86,9 +87,9 @@ const app = new Vue({
             let value = 0;
             hand.map(e => {
                 let v = e.slice(0, -1);
-                if(Number.isNaN(parseInt(v)) && hand.length === 2 && v === 'A'){
+                if(Number.isNaN(parseInt(v)) && hand.length === 2 && v === 'A' && value < 11){
                     v = 11;
-                } else if(Number.isNaN(parseInt(v)) && hand.length >= 3 && v === 'A'){
+                } else if(Number.isNaN(parseInt(v)) && hand.length >= 3 && v === 'A' || (Number.isNaN(parseInt(v)) && hand.length === 2 && v === 'A' && value >= 11)){
                     v = 1;
                 } else if(Number.isNaN(parseInt(v))){
                     v = 10;

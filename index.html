@@ -13,26 +13,41 @@
     <!-- Layout -->
 
     <header>
-        <button class="game-header-btn">BLACKJACK</button>
+        <div class="game-header-btn">
+            <p>BLACKJACK</p>
+        </div> 
     </header>
 
     <div class="container" id="app">
         <div class="wrapper">
             <!-- Dealer Section -->
-            <div class="dealer">
-                <h1>Dealer: {{ dealerPoints }}</h1>
-                <template v-for="card in dealerHand">
-                    <img :src="getSource(card)" alt="">
-                </template>
-            </div>
+            <template v-if="isGameRunning">
+                <div class="dealer">
+                    <h1>Dealer: {{ isGameEnded ? dealerPoints : '??' }}</h1>
+                    <template v-if="isGameEnded">
+                        <img v-for="card in dealerHand" :src="getSource(card)" alt="">
+                    </template>
+                    <template v-else>
+                        <img v-for="(card, index) in dealerHand" :src="index === 0 ? 'PNG/gray_back.png' : getSource(card)" alt="">
+                    </template>
+                </div>
+                
+                <!-- Player section -->
+                <div class="player">
+                    <h1>Player: {{ playerPoints }}</h1>
+                    <template v-for="card in playerHand">
+                        <img :src="getSource(card)" alt="">
+                    </template>
+                </div>
+            </template>
+
+            <template v-else>
+                <div class="intro-text">
+                    <p class="intro-welcome">Welcome to River City BlackJack</p>
+                    <p class="intro-cta">Press "Start New Game"</p>
+                </div>
+            </template>
             
-            <!-- Player section -->
-            <div class="player">
-                <h1>Player: {{ playerPoints }}</h1>
-                <template v-for="card in playerHand">
-                    <img :src="getSource(card)" alt="">
-                </template>
-            </div>
         </div>
 
         <div id="msg-board">

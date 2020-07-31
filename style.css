@@ -17,11 +17,15 @@ header{
     height: 6rem;
 }
 
+button .game-header-btn{
+    cursor: none;
+}
+
 .game-header-btn{
     color: #d3b2b1;
-    border-color: #bb8b8a;
+    border: 2px solid #bb8b8a;
     background-color: #031d0b;
-    margin-top: 3rem;
+    margin: 3rem 0;
     padding: 0 2rem;
 }
 
@@ -30,7 +34,22 @@ header{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin-top: 3rem;
+    margin-top: 6rem;
+}
+
+.intro-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro-welcome{
+    font-size: 3rem;
+}
+
+.intro-cta{
+    font-size: 2rem;
 }
 
 .dealer{
