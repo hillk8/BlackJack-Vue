@@ -34,22 +34,20 @@
             <!-- Dealer Section -->
             <div class="dealer">
                 <h1>Dealer: {{ dealerPoints }}</h1>
-                <template v-for="card in dealerHand">
-                    <img :src="getSource(card)" alt="">
-                </template>
+                <img src="Poker png/10H.png" alt="">
+                <img src="Poker png/2H.png" alt="">
             </div>
             
             <!-- Player section -->
             <div class="player">
                 <h1>Player: {{ playerPoints }}</h1>
-                <template v-for="card in playerHand">
-                    <img :src="getSource(card)" alt="">
-                </template>
+                <img src="Poker png/10D.png" alt="">
+                <img src="Poker png/9S.png" alt="">
             </div>
         </div>
 
         <div id="msg-board">
-            <h1>{{ msgBoard }}</h1>
+            <h1>Hit, Stand, or Quit....</h1>
         </div>
 
         <div class="game-btn-container">
@@ -57,8 +55,8 @@
                 <button @click="startNewGame" class="game-btn btn btn-success">START NEW GAME</button>
             </div>
             <div v-else>
-                <button @click="hit" class="game-btn btn btn-primary" :disabled="isGameEnded">HIT</button>
-                <button @click="stand" class="game-btn btn btn-danger" :disabled="isGameEnded">STAND</button>
+                <button @click="hit" class="game-btn btn btn-primary">HIT</button>
+                <button @click="stand" class="game-btn btn btn-danger">STAND</button>
                 <button @click="clearBoardNStartNewGame" class="game-btn btn btn-success">NEW GAME</button>
                 <button @click="quit" class="game-btn btn btn-secondary">QUIT</button>
             </div>

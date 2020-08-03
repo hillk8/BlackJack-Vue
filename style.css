@@ -6,6 +6,19 @@ body{
     color: #dbaeac;
 }
 
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+h1{
+    font-size: 2rem;
+    padding: 1rem 0;
+}
+
 header{
     display: flex;
     flex-wrap: wrap;
@@ -25,23 +38,6 @@ header{
     padding: 0 2rem;
 }
 
-.wrapper{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 3rem;
-}
-
-.dealer{
-    margin: 0.1rem;
-}
-
-h1{
-    font-size: 2rem;
-    padding: 1rem 0;
-}
-
 #msg-board{
     font-size: 0.8rem;
     border: 2px solid #627563;
@@ -52,7 +48,6 @@ h1{
 
 img{
     width: 8rem;
-    margin-right: 0.7rem;
 }
  
 .game-btn-container{
