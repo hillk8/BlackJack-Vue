@@ -16,10 +16,59 @@
   </style>
 </head>
 <body>
+<<<<<<< HEAD
 <p class="p1"><span class="s1">BLACKJACK</span></p>
 <p class="p2"><span class="s1"></span><br></p>
 <h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>{{ msgBoard }}</b></span></h1>
 <p class="p4"><span class="s2">START NEW GAME</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
 <p class="p4"><span class="s2">HIT</span><span class="s3"> </span><span class="s2">STAND</span><span class="s3"> </span><span class="s2">NEW GAME</span><span class="s3"> </span><span class="s2">QUIT</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
+=======
+    <!-- Layout -->
+
+    <header>
+        <button class="game-header-btn">BLACKJACK</button>
+    </header>
+
+    <div class="container" id="app">
+        <div class="wrapper">
+            <!-- Dealer Section -->
+            <div class="dealer">
+                <h1>Dealer: {{ dealerPoints }}</h1>
+                <template v-for="card in dealerHand">
+                    <img :src="getSource(card)" alt="">
+                </template>
+            </div>
+            
+            <!-- Player section -->
+            <div class="player">
+                <h1>Player: {{ playerPoints }}</h1>
+                <template v-for="card in playerHand">
+                    <img :src="getSource(card)" alt="">
+                </template>
+            </div>
+        </div>
+
+        <div id="msg-board">
+            <h1>{{ msgBoard }}</h1>
+        </div>
+
+        <div class="game-btn-container">
+            <div v-if="!isGameRunning">
+                <button @click="startNewGame" class="game-btn btn btn-success">START NEW GAME</button>
+            </div>
+            <div v-else>
+                <button @click="hit" class="game-btn btn btn-primary" :disabled="isGameEnded">HIT</button>
+                <button @click="stand" class="game-btn btn btn-danger" :disabled="isGameEnded">STAND</button>
+                <button @click="clearBoardNStartNewGame" class="game-btn btn btn-success">NEW GAME</button>
+                <button @click="quit" class="game-btn btn btn-secondary">QUIT</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="jquery-3.5.1.js"></script>
+    <script src="bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+>>>>>>> parent of c176873... Finished game.
 </body>
 </html>
