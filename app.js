@@ -5,10 +5,7 @@ const app = new Vue({
         isGameRunnning: false,
         playerPoints: 0,
         dealerPoints: 0,
-<<<<<<< HEAD
-=======
         msgBoard: 'Hit, Stand, or Quit....',
->>>>>>> parent of c176873... Finished game.
         playerHand: [],
         dealerHand: [],
         deck: [],
@@ -27,11 +24,6 @@ const app = new Vue({
             }
             this.playerPoints = this.checkHandValue(this.playerHand);
             this.dealerPoints = this.checkHandValue(this.dealerHand);
-<<<<<<< HEAD
-        },
-        quit(){
-            this.isGameRunnning = false;
-=======
         },
         hit(){
             this.playerHand.push(this.dealCard());
@@ -68,7 +60,6 @@ const app = new Vue({
             this.isGameRunning = false;
             this.isGameEnded = false;
             this.msgBoard = 'Hit, Stand, or Quit....';
->>>>>>> parent of c176873... Finished game.
             this.playerPoints = 0;
             this.dealerPoints = 0;
             this.playerHand = [];
