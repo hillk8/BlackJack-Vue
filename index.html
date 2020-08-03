@@ -1,75 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="bootstrap-4.5.0-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="vue.js"></script>
-    <title>BlackJack</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>BlackJack</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1894.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+    span.s1 {font-kerning: none}
+    span.s2 {font-kerning: none; background-color: #b3b3b3}
+    span.s3 {font: 12.0px Times; font-kerning: none; color: #000000; -webkit-text-stroke: 0px #000000}
+  </style>
 </head>
 <body>
-    <!-- Layout -->
-
-    <header>
-        <div class="game-header-btn">
-            <p>BLACKJACK</p>
-        </div> 
-    </header>
-
-    <div class="container" id="app">
-        <div class="wrapper">
-            <!-- Dealer Section -->
-            <template v-if="isGameRunning">
-                <div class="dealer">
-                    <h1>Dealer: {{ isGameEnded ? dealerPoints : '??' }}</h1>
-                    <template v-if="isGameEnded">
-                        <img v-for="card in dealerHand" :src="getSource(card)" alt="">
-                    </template>
-                    <template v-else>
-                        <img v-for="(card, index) in dealerHand" :src="index === 0 ? 'PNG/gray_back.png' : getSource(card)" alt="">
-                    </template>
-                </div>
-                
-                <!-- Player section -->
-                <div class="player">
-                    <h1>Player: {{ playerPoints }}</h1>
-                    <template v-for="card in playerHand">
-                        <img :src="getSource(card)" alt="">
-                    </template>
-                </div>
-            </template>
-
-            <template v-else>
-                <div class="intro-text">
-                    <p class="intro-welcome">Welcome to River City BlackJack</p>
-                    <p class="intro-cta">Press "Start New Game"</p>
-                </div>
-            </template>
-            
-        </div>
-
-        <div id="msg-board">
-            <h1>{{ msgBoard }}</h1>
-        </div>
-
-        <div class="game-btn-container">
-            <div v-if="!isGameRunning">
-                <button @click="startNewGame" class="game-btn btn btn-success">START NEW GAME</button>
-            </div>
-            <div v-else>
-                <button @click="hit" class="game-btn btn btn-primary" :disabled="isGameEnded">HIT</button>
-                <button @click="stand" class="game-btn btn btn-danger" :disabled="isGameEnded">STAND</button>
-                <button @click="clearBoardNStartNewGame" class="game-btn btn btn-success">NEW GAME</button>
-                <button @click="quit" class="game-btn btn btn-secondary">QUIT</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="jquery-3.5.1.js"></script>
-    <script src="bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
-    <script src="app.js"></script>
+<p class="p1"><span class="s1">BLACKJACK</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>{{ msgBoard }}</b></span></h1>
+<p class="p4"><span class="s2">START NEW GAME</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
+<p class="p4"><span class="s2">HIT</span><span class="s3"> </span><span class="s2">STAND</span><span class="s3"> </span><span class="s2">NEW GAME</span><span class="s3"> </span><span class="s2">QUIT</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
 </body>
 </html>
