@@ -5,6 +5,10 @@ const app = new Vue({
         isGameRunnning: false,
         playerPoints: 0,
         dealerPoints: 0,
+<<<<<<< HEAD
+=======
+        msgBoard: 'Hit, Stand, or Quit....',
+>>>>>>> parent of c176873... Finished game.
         playerHand: [],
         dealerHand: [],
         deck: [],
@@ -23,9 +27,48 @@ const app = new Vue({
             }
             this.playerPoints = this.checkHandValue(this.playerHand);
             this.dealerPoints = this.checkHandValue(this.dealerHand);
+<<<<<<< HEAD
         },
         quit(){
             this.isGameRunnning = false;
+=======
+        },
+        hit(){
+            this.playerHand.push(this.dealCard());
+            this.playerPoints = this.checkHandValue(this.playerHand);
+
+            if(this.playerPoints > 21){
+                this.playerPoints = 'Busted!';
+                this.isGameEnded = true;
+                this.msgBoard = 'BUST! You lose!';
+                return;
+            }
+        },
+        stand(){
+            while(this.dealerPoints <= 16){
+                this.dealerHand.push(this.dealCard());
+                this.dealerPoints = this.checkHandValue(this.dealerHand); 
+                if(this.dealerPoints > 21){
+                    this.dealerPoints = 'BUSTED!';
+                    this.isGameEnded = true;
+                    this.msgBoard = 'Dealer Busted! You Win!';
+                    return;
+                }
+            }
+            if(this.dealerPoints > this.playerPoints){
+                this.msgBoard = 'You Lost!';
+            }else if(this.dealerPoints === this.playerPoints){
+                this.msgBoard = 'Draw!';
+            }else{
+                this.msgBoard = 'You Win!';
+            }
+            this.isGameEnded = true;
+        },
+        quit(){
+            this.isGameRunning = false;
+            this.isGameEnded = false;
+            this.msgBoard = 'Hit, Stand, or Quit....';
+>>>>>>> parent of c176873... Finished game.
             this.playerPoints = 0;
             this.dealerPoints = 0;
             this.playerHand = [];

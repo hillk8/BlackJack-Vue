@@ -23,15 +23,27 @@
             <!-- Dealer Section -->
             <div class="dealer">
                 <h1>Dealer: {{ dealerPoints }}</h1>
+<<<<<<< HEAD
                 <img src="Poker png/10H.png" alt="">
                 <img src="Poker png/2H.png" alt="">
+=======
+                <template v-for="card in dealerHand">
+                    <img :src="getSource(card)" alt="">
+                </template>
+>>>>>>> parent of c176873... Finished game.
             </div>
             
             <!-- Player section -->
             <div class="player">
                 <h1>Player: {{ playerPoints }}</h1>
+<<<<<<< HEAD
                 <img src="Poker png/10D.png" alt="">
                 <img src="Poker png/9S.png" alt="">
+=======
+                <template v-for="card in playerHand">
+                    <img :src="getSource(card)" alt="">
+                </template>
+>>>>>>> parent of c176873... Finished game.
             </div>
         </div>
 
