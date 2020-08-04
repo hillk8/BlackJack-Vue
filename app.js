@@ -5,7 +5,7 @@ const app = new Vue({
         isGameRunning: false,
         playerPoints: 0,
         dealerPoints: 0,
-        msgBoard: '',
+        msgBoard: 'Hit, Stand, or Quit....',
         playerHand: [],
         dealerHand: [],
         deck: [],
