@@ -2,10 +2,10 @@
 const app = new Vue({
     el: '#app',
     data: {
-        isGameRunnning: false,
+        isGameRunning: false,
         playerPoints: 0,
         dealerPoints: 0,
-        msgBoard: 'Hit, Stand, or Quit....',
+        msgBoard: '',
         playerHand: [],
         dealerHand: [],
         deck: [],
@@ -17,7 +17,7 @@ const app = new Vue({
     },
     methods:{
         startNewGame(){
-            this.isGameRunnning = true;
+            this.isGameRunning = true;
             for(let i = 0; i < 2; i++){
                 this.playerHand.push(this.dealCard());
                 this.dealerHand.push(this.dealCard());
