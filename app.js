@@ -77,7 +77,7 @@ const app = new Vue({
             });
             return pool;
         },
-        checkHandValue(){
+        checkHandValue(hand){
             let value = 0;
             hand.map(e => {
                 let v = e.slice(0, -1);
