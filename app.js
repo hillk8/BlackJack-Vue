@@ -3,9 +3,10 @@ const app = new Vue({
     el: '#app',
     data: {
         isGameRunning: false,
+        isGameEnded: false,
         playerPoints: 0,
         dealerPoints: 0,
-        msgBoard: 'Hit, Stand, or Quit....',
+        msgBoard: '',
         playerHand: [],
         dealerHand: [],
         deck: [],
@@ -24,13 +25,14 @@ const app = new Vue({
             }
             this.playerPoints = this.checkHandValue(this.playerHand);
             this.dealerPoints = this.checkHandValue(this.dealerHand);
+            this.msgBoard = 'Hit, Stand, or Quit...';
         },
         hit(){
             this.playerHand.push(this.dealCard());
             this.playerPoints = this.checkHandValue(this.playerHand);
 
             if(this.playerPoints > 21){
-                this.playerPoints = 'Busted!';
+                this.playerPoints = 'Bust!';
                 this.isGameEnded = true;
                 this.msgBoard = 'BUST! You lose!';
                 return;
@@ -41,7 +43,7 @@ const app = new Vue({
                 this.dealerHand.push(this.dealCard());
                 this.dealerPoints = this.checkHandValue(this.dealerHand); 
                 if(this.dealerPoints > 21){
-                    this.dealerPoints = 'BUSTED!';
+                    this.dealerPoints = 'BUST!';
                     this.isGameEnded = true;
                     this.msgBoard = 'Dealer Busted! You Win!';
                     return;
@@ -59,11 +61,15 @@ const app = new Vue({
         quit(){
             this.isGameRunning = false;
             this.isGameEnded = false;
-            this.msgBoard = 'Hit, Stand, or Quit....';
+            this.msgBoard = '';
             this.playerPoints = 0;
             this.dealerPoints = 0;
             this.playerHand = [];
             this.dealerHand = [];
+        },
+        clearBoardNStartNewGame(){
+            this.quit();
+            this.startNewGame();
         },
         generateCardPool(){
             //d = Diamonds, s = Spades, c = Clubs, h = Hearts
@@ -81,9 +87,9 @@ const app = new Vue({
             let value = 0;
             hand.map(e => {
                 let v = e.slice(0, -1);
-                if(Number.isNaN(parseInt(v)) && hand.length === 2 && v === 'A'){
+                if(Number.isNaN(parseInt(v)) && hand.length === 2 && v === 'A' && value < 11){
                     v = 11;
-                } else if(Number.isNaN(parseInt(v)) && hand.length >= 3 && v === 'A'){
+                } else if((Number.isNaN(parseInt(v)) && hand.length >= 3 && v === 'A') || (Number.isNaN(parseInt(v)) && hand.length === 2 && v === 'A' && value >= 11)){
                     v = 1;
                 } else if(Number.isNaN(parseInt(v))){
                     v = 10;
@@ -102,6 +108,9 @@ const app = new Vue({
             const card = this.deck[index];
             this.cardSwitch[index] = true;
             return card;
+        },
+        getSource(card){
+            return `./png/${card}.png`;
         }
     }
 });

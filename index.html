@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
-  <script src="../BlackJack-Vue/vue.js" type="text/javascript"></script>
+  <script src="vue.js" type="text/javascript"></script>
   <title>BlackJack</title>
   
 </head>
@@ -21,24 +21,33 @@
     <div class="container" id="app">
         <div class="wrapper">
             <!-- Dealer Section -->
-            <div class="dealer">
-                <h1>Dealer: {{ dealerPoints }}</h1>
-                <template v-for="card in dealerHand">
-                    <img :src="getSource(card)" alt="">
-                </template>
-            </div>
-            
-            <!-- Player section -->
-            <div class="player">
-                <h1>Player: {{ playerPoints }}</h1>
-                <template v-for="card in playerHand">
-                    <img :src="getSource(card)" alt="">
-                </template>
-            </div>
+            <template v-if="isGameRunning">
+                <div class="dealer">
+                    <h1>Dealer: {{ isGameEnded ? dealerPoints : '??' }}</h1>
+                    <template v-if="isGameEnded">
+                        <img v-for="card in dealerHand" :src="getSource(card)" alt="">
+                    </template>
+                    <template>
+                        <img v-for="(card,index) in dealerHand" :src="index === 0 ? './png/gray_back.png' : getSource(card)" alt="">
+                    </template>
+                </div>
+                
+                <!-- Player section -->
+                <div class="player">
+                    <h1>Player: {{ playerPoints }}</h1>
+                    <template v-for="card in playerHand">
+                        <img :src="getSource(card)" alt="">
+                    </template>
+                </div>
+            </template>
+
+            <template v-else>
+                <h1>Welcome to River City BlackJack</h1>
+            </template>
         </div>
 
         <div id="msg-board">
-            <h1>Hit, Stand, or Quit....</h1>
+            <h1>{{ msgBoard }}</h1>
         </div>
 
         <div class="game-btn-container">
@@ -46,8 +55,8 @@
                 <button @click="startNewGame" class="game-btn btn btn-success">START NEW GAME</button>
             </div>
             <div v-else>
-                <button @click="hit" class="game-btn btn btn-primary">HIT</button>
-                <button @click="stand" class="game-btn btn btn-danger">STAND</button>
+                <button @click="hit" class="game-btn btn btn-primary" :disabled="isGameEnded">HIT</button>
+                <button @click="stand" class="game-btn btn btn-danger" :disabled="isGameEnded">STAND</button>
                 <button @click="clearBoardNStartNewGame" class="game-btn btn btn-success">NEW GAME</button>
                 <button @click="quit" class="game-btn btn btn-secondary">QUIT</button>
             </div>
