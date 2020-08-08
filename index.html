@@ -28,7 +28,7 @@
                         <img v-for="card in dealerHand" :src="getSource(card)" alt="">
                     </template>
                     <template v-else>
-                        <img v-for="(card, index) in dealerHand" :src="index === 0 ? 'PNG/gray_back.png' : getSource(card)" alt="">
+                        <img v-for="(card, index) in dealerHand" :src="index === 0 ? '/PNG/gray_back.png' : getSource(card)" alt="">
                     </template>
                 </div>
                 
