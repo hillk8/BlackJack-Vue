@@ -18,7 +18,9 @@ const app = new Vue({
     },
     methods:{
         startNewGame(){
+            this.quit();
             this.isGameRunning = true;
+            
             for(let i = 0; i < 2; i++){
                 this.playerHand.push(this.dealCard());
                 this.dealerHand.push(this.dealCard());
@@ -68,7 +70,6 @@ const app = new Vue({
             this.dealerHand = [];
         },
         clearBoardNStartNewGame(){
-            this.quit();
             this.startNewGame();
         },
         generateCardPool(){
@@ -105,7 +106,7 @@ const app = new Vue({
             do {
                 index = Math.floor(Math.random() * 52);
             } while (this.cardSwitch[index]);
-            const card = this.deck[index];
+            let card = this.deck[index];
             this.cardSwitch[index] = true;
             return card;
         },
