@@ -18,7 +18,6 @@ const app = new Vue({
     },
     methods:{
         startNewGame(){
-            this.quit();
             this.isGameRunning = true;
             
             for(let i = 0; i < 2; i++){
@@ -66,10 +65,11 @@ const app = new Vue({
             this.msgBoard = '';
             this.playerPoints = 0;
             this.dealerPoints = 0;
-            this.playerHand = [];
-            this.dealerHand = [];
+            this.playerHand.length = 0;
+            this.dealerHand.length = 0;
         },
         clearBoardNStartNewGame(){
+            this.quit();
             this.startNewGame();
         },
         generateCardPool(){
