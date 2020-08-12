@@ -1,5 +1,6 @@
 body{
     width: 100vw;
+    height: 100vh;;
     background-color: #112818;
     font-family: 'Abril Fatface', cursive;
     font-size: 16px;
@@ -31,6 +32,7 @@ header{
 }
 
 .game-header-btn{
+    font-size: 2.5rem;
     color: #d3b2b1;
     border-color: #bb8b8a;
     background-color: #031d0b;
@@ -43,7 +45,6 @@ header{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin-top: 3rem;
 }
 
 .dealer{
@@ -51,7 +52,7 @@ header{
 }
 
 h1{
-    font-size: 2rem;
+    font-size: 1.1rem;
     padding: 1rem 0;
 }
 
@@ -59,8 +60,7 @@ h1{
     font-size: 0.8rem;
     border: 2px solid #627563;
     height: 0.4rem;
-    margin: 5rem 0;
-    padding: 0 2.4rem;
+    margin: 2rem 0;
 }
 
 img{
@@ -72,6 +72,7 @@ img{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding-top: 2rem;
 }
 
 .game-btn{
@@ -80,13 +81,12 @@ img{
     border-style: solid;
     border-color: #031d0b;
     border-radius: 0.7rem;
-    margin-right: 2rem;
-    padding: 0.8rem 2rem;
-    font-size: 1.2rem;
+    padding: 0.8rem 0.7rem;
+    font-size: 0.8rem;
 }
 
 @media only screen and (max-width: 500px){
     img {
-        width: 5rem;
+        width: 3.5rem;
     }
 }
